@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 include("../php/connection.php");
 
 if(isset($_POST["login"])){
@@ -8,13 +10,22 @@ if(isset($_POST["login"])){
 
     $Sql = "SELECT * FROM admin where email='$email' AND password ='$password'";
     $result = mysqli_query($conn, $Sql);
-    $final= $conn->fetch_assoc();
+    $final= mysqli_fetch_assoc($result);
+
+    $_SESSION['email']= $final['email'];   
+    $_SESSION['password']=$final['password'];
 
 
-    if($result){
-
+    if($email=$final['email'] AND $password=$final['password'])
+    {
+        header('location: ../php/dashboard.php');
 
    }
+   else{
+    header('location: ../php/adminlogin.php');
+   }
+
+}
 ?>
 
 
@@ -29,7 +40,7 @@ if(isset($_POST["login"])){
 </head>
 <body>
     <div class="row">
-        <form action="loginhandler.php" class="form-horizontal" method="post">
+        <form action="adminlogin.php" class="form-horizontal" method="post">
             <div class="box-body">
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
@@ -43,17 +54,6 @@ if(isset($_POST["login"])){
                     <div class="col-sm-10">
                         <input type="password" class="form-control" id="inputpassword3" placeholder="Password" name="password">
                     </div>
-                </div>
-
-                <div class="form-group">
-                   <div class="col-sm-offset-2 col-sm-10">
-                    <div class="checkbox">
-                        <label for="">
-                            <input type="checkbox">Remember me
-                        </label>
-                    </div>
-
-                   </div>
                 </div>
             </div>
 

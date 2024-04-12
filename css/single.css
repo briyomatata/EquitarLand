@@ -1,0 +1,20 @@
+.single-product{
+    margin: 10px;
+}
+
+.small-img-group{
+    display: flex;
+    justify-content: space-between;
+}
+
+.small-img-col{
+    flex-basis: 24%;
+    cursor: pointer;
+
+}
+
+.text-right{
+    margin-left: 140px;
+    font-size: 30px;
+    font-weight: bold;
+}

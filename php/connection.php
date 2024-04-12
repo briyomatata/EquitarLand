@@ -2,7 +2,7 @@
 $host = "localhost";
 $username = "root";
 $password = "";
-$database = "land";
+$database = "lands";
 
 // Create connection
 $conn = new mysqli($host, $username, $password, $database);
@@ -12,7 +12,4 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Now you can perform database operations using $conn
-
-// Close connection when done
-$conn->close();
+?>
